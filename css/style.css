@@ -114,6 +114,7 @@ a {
   font-weight: 700;
   letter-spacing: 2.5px;
   text-transform: uppercase;
+  text-decoration: none;
   padding: 10px 22px;
   border-radius: var(--radius-sm);
   border: none;
@@ -498,6 +499,7 @@ a {
   letter-spacing: 2px;
   text-transform: uppercase;
   text-align: center;
+  text-decoration: none;
   padding: 15px var(--gap-sm);
   border-radius: var(--radius-sm);
   border: 1px solid rgba(255,255,255,0.1);
@@ -859,160 +861,6 @@ a {
 .cta-final-titulo span {
   color: var(--dourado-claro);
 }
-
-/* ============================================================
-   POP-UP / BOTTOM SHEET DE CHECKOUT
-   ============================================================ */
-.overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.75);
-  z-index: 2000;
-  display: flex;
-  align-items: flex-end;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s, visibility 0.3s;
-  backdrop-filter: blur(8px);
-}
-
-.overlay.ativo { opacity: 1; visibility: visible; }
-
-.checkout-sheet {
-  background: var(--branco);
-  border-radius: 18px 18px 0 0;
-  width: 100%;
-  max-width: 480px;
-  margin: 0 auto;
-  padding: var(--gap-md) var(--gap-sm) calc(var(--gap-md) + env(safe-area-inset-bottom));
-  max-height: 92svh;
-  overflow-y: auto;
-  transform: translateY(100%);
-  transition: transform 0.35s cubic-bezier(0.32,0.72,0,1);
-  position: relative;
-}
-
-.overlay.ativo .checkout-sheet { transform: translateY(0); }
-
-.checkout-drag {
-  width: 36px;
-  height: 3px;
-  background: var(--cinza-borda);
-  border-radius: 2px;
-  margin: 0 auto var(--gap-md);
-}
-
-.checkout-titulo {
-  font-family: var(--font-titulo);
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: var(--preto);
-  text-transform: uppercase;
-  text-align: center;
-  letter-spacing: 1.5px;
-  margin-bottom: 4px;
-}
-
-.checkout-subtitulo {
-  font-size: 0.82rem;
-  color: var(--cinza-medio);
-  text-align: center;
-  margin-bottom: var(--gap-md);
-}
-
-.checkout-plano-resumo {
-  background: var(--dourado-bg);
-  border-radius: var(--radius-sm);
-  border: 1px solid rgba(201,150,12,0.25);
-  padding: var(--gap-sm) var(--gap-md);
-  margin-bottom: var(--gap-md);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.checkout-plano-nome {
-  font-family: var(--font-titulo);
-  font-size: 0.88rem;
-  font-weight: 700;
-  color: var(--preto);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.checkout-plano-preco {
-  font-family: var(--font-titulo);
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: var(--dourado);
-}
-
-.form-grupo { margin-bottom: var(--gap-sm); }
-
-.form-grupo label {
-  display: block;
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: var(--cinza-escuro);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 6px;
-}
-
-.form-grupo input {
-  width: 100%;
-  background: var(--cinza-bg);
-  border: 1.5px solid transparent;
-  border-radius: var(--radius-sm);
-  padding: 14px var(--gap-sm);
-  font-size: 1rem;
-  color: var(--preto);
-  font-family: var(--font-corpo);
-  outline: none;
-  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
-  -webkit-appearance: none;
-}
-
-.form-grupo input:focus  {
-  border-color: var(--dourado);
-  background: var(--branco);
-  box-shadow: 0 0 0 3px rgba(201,150,12,0.1);
-}
-
-.form-grupo input::placeholder { color: var(--cinza-claro); }
-
-.form-linha {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--gap-sm);
-}
-
-.checkout-seguranca {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  font-size: 0.72rem;
-  color: var(--cinza-claro);
-  margin-top: var(--gap-sm);
-  letter-spacing: 0.3px;
-}
-
-.btn-fechar-overlay {
-  position: absolute;
-  top: var(--gap-sm);
-  right: var(--gap-sm);
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  color: var(--cinza-claro);
-  cursor: pointer;
-  line-height: 1;
-  padding: 4px;
-  transition: color 0.2s;
-}
-
-.btn-fechar-overlay:hover { color: var(--preto); }
 
 /* ============================================================
    RODAPÉ
