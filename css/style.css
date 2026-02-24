@@ -1032,10 +1032,10 @@ a {
 }
 
 .footer-logo-wrap img {
-  height: 48px;
+  height: 344px;
   width: auto;
   object-fit: contain;
-  opacity: 0.8;
+  opacity: 1;
 }
 
 .footer-faq { margin-bottom: var(--gap-lg); }
