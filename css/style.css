@@ -228,14 +228,17 @@ a {
 }
 
 .hero-logo {
-  width: 260px;
+  width: 360px;
   max-width: 70%;
   display: block;
   margin: 0 auto var(--gap-md);
   filter:
-    drop-shadow(0 0 12px rgba(232,184,36,0.8))
-    drop-shadow(0 0 40px rgba(201,150,12,0.6))
-    drop-shadow(0 0 80px rgba(201,150,12,0.35));
+    drop-shadow(0 0 20px rgba(255, 210, 50, 1))
+    drop-shadow(0 0 80px rgba(255, 200, 30, 1))
+    drop-shadow(0 0 200px rgba(255, 196, 19, 0.9))
+    drop-shadow(0 0 400px rgba(255, 188, 4, 0.7))
+    drop-shadow(0 0 700px rgba(255, 197, 37, 0.45))
+    drop-shadow(0 0 1060px rgba(255, 203, 60, 0.25));
 }
 
 .hero-headline {
