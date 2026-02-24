@@ -153,8 +153,8 @@
     else if (planoNome.includes('O Arsenal')) productId = 'o-arsenal';
     else if (planoNome.includes('Clube do Trono')) productId = 'clube-do-trono';
 
-    // URL do backend (ajuste para produção quando for subir no Render)
-    const BACKEND_URL = 'http://localhost:3000';
+    // URL do backend (Render production)
+    const BACKEND_URL = 'https://dono-do-trono-api.onrender.com';
 
     fetch(`${BACKEND_URL}/api/checkout`, {
       method: 'POST',
