@@ -272,6 +272,55 @@
   }
 
   /* ----------------------------------------------------------
+     FORMULÁRIO DE CONTATO
+  ---------------------------------------------------------- */
+  function initFormContato() {
+    const form = $('#form-contato');
+    if (!form) return;
+
+    const BACKEND_URL = 'https://dono-do-trono-api.onrender.com';
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = $('[type="submit"]', form);
+      const feedback = $('#contato-feedback');
+      const textoOriginal = btn.textContent;
+
+      btn.disabled = true;
+      btn.textContent = 'Enviando...';
+      if (feedback) { feedback.textContent = ''; feedback.className = 'contato-feedback'; }
+
+      const dados = {
+        nome: form.nome.value.trim(),
+        email: form.email.value.trim(),
+        mensagem: form.mensagem.value.trim(),
+      };
+
+      try {
+        const res = await fetch(`${BACKEND_URL}/api/contact`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(dados),
+        });
+        const data = await res.json();
+
+        if (res.ok) {
+          if (feedback) { feedback.textContent = '✅ Mensagem enviada com sucesso!'; feedback.classList.add('sucesso'); }
+          form.reset();
+        } else {
+          throw new Error(data.error || 'Erro ao enviar');
+        }
+      } catch (err) {
+        console.error('Erro no contato:', err);
+        if (feedback) { feedback.textContent = '❌ Erro ao enviar. Tente novamente.'; feedback.classList.add('erro'); }
+      } finally {
+        btn.disabled = false;
+        btn.textContent = textoOriginal;
+      }
+    });
+  }
+
+  /* ----------------------------------------------------------
      INIT
   ---------------------------------------------------------- */
   function init() {
@@ -282,6 +331,7 @@
     initFAQ();
     initScrollReveal();
     initSmoothScroll();
+    initFormContato();
   }
 
   if (document.readyState === 'loading') {
