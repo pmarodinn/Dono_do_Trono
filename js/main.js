@@ -144,6 +144,51 @@
   }
 
   /* ----------------------------------------------------------
+     META PIXEL — Eventos de conversão
+  ---------------------------------------------------------- */
+  function initMetaPixelEvents() {
+    // ViewContent — quando a seção de oferta fica visível
+    const oferta = $('#oferta');
+    if (oferta && 'IntersectionObserver' in window) {
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            if (typeof fbq === 'function') {
+              fbq('track', 'ViewContent', {
+                content_name: 'Dono do Trono — Planos',
+                content_category: 'Lenços Umedecidos'
+              });
+            }
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.3 });
+      obs.observe(oferta);
+    }
+
+    // InitiateCheckout — clique em qualquer botão de compra (Yampi)
+    document.addEventListener('click', (e) => {
+      const link = e.target.closest('a[href*="yampi.com.br"]');
+      if (!link) return;
+
+      let plano = 'Dono do Trono';
+      let valor = 0;
+
+      if (link.href.includes('CZC43AMUF6')) { plano = 'Kit Test Drive'; valor = 39.90; }
+      else if (link.href.includes('CGHK71GNMZ')) { plano = 'O Arsenal'; valor = 89.90; }
+      else if (link.href.includes('MAXBYJGACO')) { plano = 'Clube do Trono'; valor = 71.90; }
+
+      if (typeof fbq === 'function') {
+        fbq('track', 'InitiateCheckout', {
+          content_name: plano,
+          value: valor,
+          currency: 'BRL'
+        });
+      }
+    });
+  }
+
+  /* ----------------------------------------------------------
      INIT
   ---------------------------------------------------------- */
   function init() {
@@ -152,6 +197,7 @@
     initScrollReveal();
     initSmoothScroll();
     initFormContato();
+    initMetaPixelEvents();
   }
 
   if (document.readyState === 'loading') {
