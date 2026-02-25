@@ -1247,6 +1247,174 @@ a {
 .hero-content .reveal:nth-child(5) { transition-delay: 0.7s; }
 
 /* ============================================================
+   SEÇÃO: COMPARAÇÃO — Dono do Trono vs Papel Higiênico
+   ============================================================ */
+#comparacao {
+  background: var(--preto);
+  padding: var(--gap-xl) var(--gap-sm);
+  position: relative;
+}
+
+#comparacao::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201,150,12,0.2), transparent);
+}
+
+.comparacao-tabela {
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-top: var(--gap-md);
+}
+
+/* Header da tabela */
+.comp-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  background: rgba(201,150,12,0.08);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.comp-header .comp-col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--gap-sm) var(--gap-xs);
+  min-height: 70px;
+}
+
+.comp-header .comp-criterio {
+  background: transparent;
+}
+
+.comp-logo {
+  height: 36px;
+  width: auto;
+  object-fit: contain;
+  filter:
+    drop-shadow(0 0 8px rgba(255, 210, 50, 0.6))
+    drop-shadow(0 0 20px rgba(255, 200, 30, 0.3));
+}
+
+.comp-papel-label {
+  font-family: var(--font-titulo);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.4);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+  line-height: 1.4;
+}
+
+/* Linhas da tabela */
+.comp-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  transition: background 0.2s;
+}
+
+.comp-row:last-child {
+  border-bottom: none;
+}
+
+.comp-row:hover {
+  background: rgba(255,255,255,0.03);
+}
+
+.comp-col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px var(--gap-xs);
+  text-align: center;
+}
+
+.comp-criterio {
+  justify-content: flex-start;
+  padding-left: var(--gap-sm);
+  font-family: var(--font-corpo);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.65);
+  text-align: left;
+}
+
+/* Ícones de status */
+.comp-sim {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(74, 222, 128, 0.12);
+  color: #4ade80;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.comp-nao {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(248, 113, 113, 0.1);
+  color: #f87171;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.comp-parcial {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(251, 191, 36, 0.1);
+  color: #fbbf24;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+/* Coluna Dono do Trono com destaque sutil */
+.comp-header .comp-trono {
+  background: rgba(201,150,12,0.06);
+  border-left: 1px solid rgba(201,150,12,0.12);
+  border-right: 1px solid rgba(201,150,12,0.12);
+}
+
+.comp-row .comp-trono {
+  background: rgba(201,150,12,0.03);
+  border-left: 1px solid rgba(201,150,12,0.06);
+  border-right: 1px solid rgba(201,150,12,0.06);
+}
+
+/* Rodapé / veredito */
+.comparacao-rodape {
+  text-align: center;
+  margin-top: var(--gap-md);
+}
+
+.comp-veredicto {
+  font-family: var(--font-titulo);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--dourado-claro);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* ============================================================
    PÁGINA: NOSSA HISTÓRIA
    ============================================================ */
 .historia-hero {
