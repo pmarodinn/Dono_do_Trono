@@ -1339,11 +1339,13 @@ a {
 .comp-criterio {
   justify-content: flex-start;
   padding-left: var(--gap-sm);
-  font-family: var(--font-corpo);
-  font-size: 0.82rem;
-  font-weight: 500;
-  color: rgba(255,255,255,0.65);
+  font-family: var(--font-titulo);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.85);
   text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
 }
 
 /* Ícones de status */
