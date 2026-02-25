@@ -1418,6 +1418,38 @@ a {
 }
 
 /* ============================================================
+   MOBILE STICKY CTA
+   ============================================================ */
+.mobile-cta {
+  display: none; /* visible only on small screens */
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: env(safe-area-inset-bottom, 12px);
+  padding: 10px var(--gap-sm);
+  z-index: 1600;
+  pointer-events: none;
+}
+.mobile-cta-btn {
+  display: block;
+  pointer-events: auto;
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  background: var(--dourado);
+  color: var(--preto);
+  font-family: var(--font-titulo);
+  font-weight: 800;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 14px 18px;
+  border-radius: 12px;
+  box-shadow: var(--sombra-botao);
+  text-decoration: none;
+}
+
+
+/* ============================================================
    PÁGINA: NOSSA HISTÓRIA
    ============================================================ */
 .historia-hero {
@@ -1584,6 +1616,13 @@ a {
   .cta-final-titulo { font-size: 2.4rem; }
   .comp-criterio { font-size: 0.95rem; letter-spacing: 0.8px; }
   .comp-logo { height: 40px; }
+}
+
+@media (max-width: 479px) {
+  .mobile-cta { display: block; }
+  /* Slightly reduce table spacing to fit narrow screens */
+  .comparacao-tabela { margin-top: 12px; }
+  .comp-col { padding: 10px 8px; }
 }
 
 @media (min-width: 768px) {
