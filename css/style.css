@@ -1275,7 +1275,7 @@ a {
 /* Header da tabela */
 .comp-header {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 2fr 1fr 1fr;
   background: rgba(201,150,12,0.08);
   border-bottom: 1px solid rgba(255,255,255,0.08);
 }
@@ -1315,7 +1315,7 @@ a {
 /* Linhas da tabela */
 .comp-row {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 2fr 1fr 1fr;
   border-bottom: 1px solid rgba(255,255,255,0.04);
   transition: background 0.2s;
 }
@@ -1340,12 +1340,13 @@ a {
   justify-content: flex-start;
   padding-left: var(--gap-sm);
   font-family: var(--font-titulo);
-  font-size: 0.95rem;
+  font-size: 0.78rem;
   font-weight: 700;
   color: rgba(255,255,255,0.85);
   text-align: left;
   text-transform: uppercase;
-  letter-spacing: 0.8px;
+  letter-spacing: 0.5px;
+  line-height: 1.3;
 }
 
 /* Ícones de status */
@@ -1581,6 +1582,8 @@ a {
   .container { padding: 0 var(--gap-md); }
   .hero-headline { font-size: 3rem; }
   .cta-final-titulo { font-size: 2.4rem; }
+  .comp-criterio { font-size: 0.95rem; letter-spacing: 0.8px; }
+  .comp-logo { height: 40px; }
 }
 
 @media (min-width: 768px) {
