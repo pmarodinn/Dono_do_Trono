@@ -42,6 +42,13 @@
        A. STICKY HEADER — translúcido, ultra premium
   ============================================================ -->
   <header id="header">
+    <!-- Hamburger Menu -->
+    <button class="menu-hamburger" id="menu-hamburger" aria-label="Abrir menu" aria-expanded="false">
+      <span class="hamburger-linha"></span>
+      <span class="hamburger-linha"></span>
+      <span class="hamburger-linha"></span>
+    </button>
+
     <div class="header-logo">
       <img src="images/logo/logo.png" alt="Dono do Trono" />
     </div>
@@ -49,6 +56,27 @@
       Comprar Agora
     </a>
   </header>
+
+  <!-- Nav Drawer / Menu lateral -->
+  <div class="nav-overlay" id="nav-overlay"></div>
+  <nav class="nav-drawer" id="nav-drawer" aria-label="Menu principal">
+    <div class="nav-drawer-header">
+      <img src="images/logo/logo.png" alt="Dono do Trono" class="nav-drawer-logo" />
+      <button class="nav-drawer-close" id="nav-drawer-close" aria-label="Fechar menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <ul class="nav-drawer-links">
+      <li><a href="index.html">Início</a></li>
+      <li><a href="historia.html">Nossa História</a></li>
+      <li><a href="#contato" class="nav-scroll-link">Contato</a></li>
+    </ul>
+    <div class="nav-drawer-footer">
+      <a href="https://dono-do-trono.pay.yampi.com.br/r/CGHK71GNMZ" target="_blank" rel="noopener" class="btn-cta">
+        Comprar Agora
+      </a>
+    </div>
+  </nav>
 
 
   <!-- ============================================================
