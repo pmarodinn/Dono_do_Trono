@@ -2,3 +2,8 @@ node_modules/
 *.bak
 .env
 .DS_Store
+
+# Imagens originais pesadas (usar versões otimizadas)
+images/product/o_arsenal.png
+images/logo/logo_white.png
+images/logo/logo.png

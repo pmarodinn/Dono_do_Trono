@@ -14,9 +14,12 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" /></noscript>
 
   <link rel="stylesheet" href="css/style.css" />
+  <!-- Preload hero logo for faster LCP -->
+  <link rel="preload" as="image" href="images/logo/logo_white_sm.png" />
   <!-- Canonical: replace with your production URL -->
   <link rel="canonical" href="https://dono-do-trono.com.br/" />
 
@@ -105,7 +108,7 @@
     </button>
 
     <div class="header-logo">
-      <img src="images/logo/logo_white.png" alt="Dono do Trono" loading="eager" />
+      <img src="images/logo/logo_white_sm.png" alt="Dono do Trono" loading="eager" />
     </div>
     <a href="https://dono-do-trono.pay.yampi.com.br/r/CGHK71GNMZ" target="_blank" rel="noopener" class="btn-header">
       Comprar Agora
@@ -116,7 +119,7 @@
   <div class="nav-overlay" id="nav-overlay"></div>
   <nav class="nav-drawer" id="nav-drawer" aria-label="Menu principal">
     <div class="nav-drawer-header">
-      <img src="images/logo/logo_white.png" alt="Dono do Trono" class="nav-drawer-logo" />
+      <img src="images/logo/logo_white_sm.png" alt="Dono do Trono" class="nav-drawer-logo" loading="lazy" />
       <button class="nav-drawer-close" id="nav-drawer-close" aria-label="Fechar menu">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
@@ -147,15 +150,15 @@
       muted
       loop
       playsinline
-      preload="auto"
-      poster="images/product/o_arsenal.png"
+      preload="metadata"
+      poster="images/product/o_arsenal_poster.jpg"
     ></video>
 
     <div class="hero-glow"></div>
     <div class="hero-glow-2"></div>
 
     <div class="hero-content">
-      <img src="images/logo/logo_white.png" alt="Dono do Trono" class="hero-logo reveal" loading="eager" />
+      <img src="images/logo/logo_white_sm.png" alt="Dono do Trono" class="hero-logo reveal" loading="eager" decoding="async" fetchpriority="high" />
 
       <h1 class="hero-headline reveal">
         O Fim da Era do<br><span class="hero-accent">C* Arranhado.</span>
@@ -193,7 +196,7 @@
         <!-- Plano 1 -->
         <div class="plano-card reveal" role="listitem">
           <div class="plano-img-wrap">
-            <img src="images/product/teste_drive.png" alt="Kit Test Drive — 3 pacotes de lenços umedecidos Dono do Trono" loading="lazy" class="plano-img" />
+            <img src="images/product/teste_drive.jpg" alt="Kit Test Drive — 3 pacotes de lenços umedecidos Dono do Trono" loading="lazy" decoding="async" class="plano-img" />
           </div>
           <div class="plano-nome">Kit Test Drive</div>
           <p class="plano-desc">3 Pacotes — Pra você provar e nunca mais olhar pro papel com os mesmos olhos.</p>
@@ -211,7 +214,7 @@
         <div class="plano-card destaque reveal" role="listitem">
           <span class="plano-badge">Mais Vendido</span>
           <div class="plano-img-wrap">
-            <img src="images/product/o_arsenal.png" alt="O Arsenal — 10 pacotes de lenços umedecidos Dono do Trono" loading="lazy" class="plano-img" />
+            <img src="images/product/o_arsenal.jpg" alt="O Arsenal — 10 pacotes de lenços umedecidos Dono do Trono" loading="lazy" decoding="async" class="plano-img" />
           </div>
           <div class="plano-nome">O Arsenal</div>
           <p class="plano-desc">10 Pacotes + Frete Grátis. Estoque pra deixar o trono impecável por meses.</p>
@@ -229,7 +232,7 @@
         <!-- Plano 3: Assinatura -->
         <div class="plano-card reveal" role="listitem">
           <div class="plano-img-wrap">
-            <img src="images/product/clube_do_trono.png" alt="Clube do Trono — assinatura mensal de lenços umedecidos" loading="lazy" class="plano-img" />
+            <img src="images/product/clube_do_trono.jpg" alt="Clube do Trono — assinatura mensal de lenços umedecidos" loading="lazy" decoding="async" class="plano-img" />
           </div>
           <div class="plano-nome">
             Clube do Trono
@@ -263,7 +266,7 @@
       <h2 class="secao-titulo reveal">Construído pra Trabalho<br>Pesado. Literalmente.</h2>
 
       <div class="produto-imagem-wrap reveal">
-        <img src="images/product/o_arsenal.png" alt="Pacotes Dono do Trono — visão do produto" loading="lazy" />
+        <img src="images/product/o_arsenal.jpg" alt="Pacotes Dono do Trono — visão do produto" loading="lazy" decoding="async" />
         <span class="produto-tag">Tamanho XL</span>
       </div>
 
@@ -365,7 +368,7 @@
   <section class="marketing-banner reveal" aria-label="Marketing">
     <div class="container">
       <figure class="marketing-figure">
-        <img src="images/marketing/estatua_na_academia_bunda_suja_e_um_homem_limpando_com_o_lenco.png" alt="Estátua de academia com bunda suja e um homem limpando com lenço Dono do Trono" loading="lazy" />
+        <img src="images/marketing/estatua_na_academia_bunda_suja_e_um_homem_limpando_com_o_lenco.jpg" alt="Estátua de academia com bunda suja e um homem limpando com lenço Dono do Trono" loading="lazy" decoding="async" />
         <figcaption class="marketing-legenda">Até o shape mais bruto precisa de uma limpeza digna. 🏋️‍♂️</figcaption>
       </figure>
     </div>
@@ -387,7 +390,7 @@
         <div class="comp-header">
           <div class="comp-col comp-criterio"></div>
           <div class="comp-col comp-trono">
-            <img src="images/logo/logo_white.png" alt="Logo Dono do Trono — lenços umedecidos" class="comp-logo" loading="lazy" />
+            <img src="images/logo/logo_white_sm.png" alt="Logo Dono do Trono — lenços umedecidos" class="comp-logo" loading="lazy" decoding="async" />
           </div>
           <div class="comp-col comp-papel">
             <span class="comp-papel-label">🧻 Papel<br>Higiênico</span>
@@ -444,7 +447,7 @@
   <section class="marketing-banner reveal" aria-label="Marketing">
     <div class="container">
       <figure class="marketing-figure">
-        <img src="images/marketing/sentado_no_vaso_pegando_o_lenco.png" alt="Homem sentado no vaso pegando o lenço umedecido Dono do Trono" loading="lazy" />
+        <img src="images/marketing/sentado_no_vaso_pegando_o_lenco.jpg" alt="Homem sentado no vaso pegando o lenço umedecido Dono do Trono" loading="lazy" decoding="async" />
         <figcaption class="marketing-legenda">O momento sagrado. Zero pressa, zero papel, zero arrependimento. 🚽👑</figcaption>
       </figure>
     </div>
@@ -552,7 +555,7 @@
     <div class="container">
 
       <div class="footer-logo-wrap">
-        <img src="images/logo/logo_white.png" alt="Dono do Trono — Lenços Umedecidos Masculinos" loading="lazy" />
+        <img src="images/logo/logo_white_sm.png" alt="Dono do Trono — Lenços Umedecidos Masculinos" loading="lazy" decoding="async" />
       </div>
 
       <div class="footer-faq" aria-label="Perguntas frequentes">
@@ -642,6 +645,6 @@
   </footer>
 
 
-  <script src="js/main.js"></script>
+  <script src="js/main.js" defer></script>
 </body>
 </html>

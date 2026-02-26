@@ -1713,6 +1713,21 @@ a {
 }
 
 /* ============================================================
+   PERFORMANCE — content-visibility para seções fora da tela
+   ============================================================ */
+#oferta,
+#produto,
+#beneficios,
+#comparacao,
+#prova-social,
+#cta-final,
+#footer,
+.marketing-banner {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
+}
+
+/* ============================================================
    MEDIA QUERIES
    ============================================================ */
 @media (min-width: 480px) {
@@ -1730,6 +1745,27 @@ a {
   /* Slightly reduce table spacing to fit narrow screens */
   .comparacao-tabela { margin-top: 12px; }
   .comp-col { padding: 10px 8px; }
+
+  /* Reduzir efeitos pesados no mobile */
+  .hero-logo {
+    filter:
+      drop-shadow(0 0 20px rgba(255, 210, 50, 0.8))
+      drop-shadow(0 0 60px rgba(255, 200, 30, 0.5));
+  }
+
+  .hero-glow,
+  .hero-glow-2 {
+    display: none;
+  }
+}
+
+/* Respeitar preferência de movimento reduzido */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 @media (min-width: 768px) {
