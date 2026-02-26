@@ -493,11 +493,13 @@ a {
   position: relative;
 }
 
-.hero-produto-wrap img {
+.hero-produto-wrap img,
+.hero-produto-wrap video {
   width: 100%;
   border-radius: 20px;
   filter: drop-shadow(0 20px 60px rgba(201,150,12,0.18)) drop-shadow(0 8px 24px rgba(0,0,0,0.6));
   animation: flutuar 4s ease-in-out infinite;
+  object-fit: cover;
 }
 
 @keyframes flutuar {
@@ -599,6 +601,28 @@ a {
   position: relative;
   backdrop-filter: blur(10px);
   transition: border-color 0.3s, transform 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.plano-img-wrap {
+  width: 100%;
+  max-width: 200px;
+  margin: 0 auto 12px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+.plano-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius-sm);
+  filter: drop-shadow(0 8px 24px rgba(0,0,0,0.4));
+  transition: transform 0.4s ease;
+}
+.plano-card:hover .plano-img {
+  transform: scale(1.04);
 }
 
 .plano-card:hover {
@@ -1304,6 +1328,43 @@ a {
 .hero-content .reveal:nth-child(5) { transition-delay: 0.6s; }
 .hero-content .reveal:nth-child(6) { transition-delay: 0.72s; }
 .hero-content .reveal:nth-child(7) { transition-delay: 0.85s; }
+
+/* ============================================================
+   MARKETING BANNERS
+   ============================================================ */
+.marketing-banner {
+  padding: var(--gap-lg) var(--gap-sm);
+  background: var(--preto);
+}
+
+.marketing-figure {
+  max-width: 480px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+}
+
+.marketing-figure img {
+  width: 100%;
+  border-radius: 16px;
+  filter: drop-shadow(0 12px 40px rgba(201,150,12,0.12)) drop-shadow(0 4px 16px rgba(0,0,0,0.5));
+  transition: transform 0.4s ease;
+}
+
+.marketing-figure:hover img {
+  transform: scale(1.02);
+}
+
+.marketing-legenda {
+  margin-top: var(--gap-sm);
+  font-family: var(--font-corpo);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.55);
+  font-style: italic;
+  line-height: 1.5;
+  letter-spacing: 0.3px;
+}
 
 /* ============================================================
    SEÇÃO: COMPARAÇÃO — Dono do Trono vs Papel Higiênico
