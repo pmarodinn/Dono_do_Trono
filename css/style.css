@@ -339,6 +339,27 @@ a {
   overflow: hidden;
 }
 
+/* Vídeo de fundo cobrindo toda a hero */
+.hero-video-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Overlay escuro sobre o vídeo para legibilidade */
+#hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 1;
+  pointer-events: none;
+}
+
 /* Glow dourado atrás do produto */
 .hero-glow {
   position: absolute;
@@ -349,7 +370,7 @@ a {
   height: 320px;
   background: radial-gradient(circle, rgba(201,150,12,0.12) 0%, transparent 70%);
   pointer-events: none;
-  z-index: 0;
+  z-index: 2;
   animation: glowPulse 8s ease-in-out infinite;
 }
 
@@ -362,7 +383,7 @@ a {
   height: 200px;
   background: radial-gradient(ellipse, rgba(201,150,12,0.06) 0%, transparent 70%);
   pointer-events: none;
-  z-index: 0;
+  z-index: 2;
   animation: glowPulse2 12s ease-in-out infinite;
 }
 
@@ -388,22 +409,9 @@ a {
   }
 }
 
-/* Grid sutil no fundo */
-#hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
-  background-size: 48px 48px;
-  pointer-events: none;
-  z-index: 0;
-}
-
 .hero-content {
   position: relative;
-  z-index: 1;
+  z-index: 3;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -484,27 +492,6 @@ a {
   text-transform: uppercase;
   font-family: var(--font-corpo);
   font-weight: 500;
-}
-
-.hero-produto-wrap {
-  width: 100%;
-  max-width: 340px;
-  margin: 0 auto var(--gap-md);
-  position: relative;
-}
-
-.hero-produto-wrap img,
-.hero-produto-wrap video {
-  width: 100%;
-  border-radius: 20px;
-  filter: drop-shadow(0 20px 60px rgba(201,150,12,0.18)) drop-shadow(0 8px 24px rgba(0,0,0,0.6));
-  animation: flutuar 4s ease-in-out infinite;
-  object-fit: cover;
-}
-
-@keyframes flutuar {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-8px); }
 }
 
 /* Trust badges */
@@ -1322,12 +1309,10 @@ a {
 
 /* Stagger delays para hero */
 .hero-content .reveal:nth-child(1) { transition-delay: 0.1s; }
-.hero-content .reveal:nth-child(2) { transition-delay: 0.22s; }
-.hero-content .reveal:nth-child(3) { transition-delay: 0.35s; }
-.hero-content .reveal:nth-child(4) { transition-delay: 0.48s; }
-.hero-content .reveal:nth-child(5) { transition-delay: 0.6s; }
-.hero-content .reveal:nth-child(6) { transition-delay: 0.72s; }
-.hero-content .reveal:nth-child(7) { transition-delay: 0.85s; }
+.hero-content .reveal:nth-child(2) { transition-delay: 0.25s; }
+.hero-content .reveal:nth-child(3) { transition-delay: 0.4s; }
+.hero-content .reveal:nth-child(4) { transition-delay: 0.55s; }
+.hero-content .reveal:nth-child(5) { transition-delay: 0.7s; }
 
 /* ============================================================
    MARKETING BANNERS
