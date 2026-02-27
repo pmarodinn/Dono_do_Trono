@@ -110,7 +110,16 @@
     <div class="header-logo">
       <img src="images/logo/logo_white_sm.png" alt="Dono do Trono" loading="eager" />
     </div>
-    <a href="https://dono-do-trono.pay.yampi.com.br/r/CGHK71GNMZ" target="_blank" rel="noopener" class="btn-header">
+
+    <!-- Timer de urgência (centralizado) -->
+    <div class="urgent-timer-container" id="urgent-timer" style="display: none;">
+      <span class="urgent-text">OFERTA EXPIRA EM:</span>
+      <div class="timer-countdown">
+        <span class="timer-box" id="timer-min">00</span>:<span class="timer-box" id="timer-sec">00</span>
+      </div>
+    </div>
+    
+    <a href="#oferta" class="btn-header nav-scroll-link">
       Comprar Agora
     </a>
   </header>
@@ -145,13 +154,12 @@
     <!-- Vídeo de fundo full-bleed -->
     <video
       class="hero-video-bg"
-      src="videos/lumberjack.mp4"
+      src="videos/lumberjack1.mp4"
       autoplay
       muted
       loop
       playsinline
       preload="metadata"
-      poster="images/product/o_arsenal_poster.jpg"
     ></video>
 
     <div class="hero-glow"></div>
@@ -265,7 +273,7 @@
 
         <div class="destaque-item reveal" role="listitem">
           <div class="destaque-icon">
-            <img src="images/icons/icon-XL.svg" alt="Ícone tamanho XL" loading="lazy" />
+            <img src="images/icons/icon-xxl.svg" alt="Ícone tamanho XL" loading="lazy" />
           </div>
           <div class="destaque-texto">
             <strong>Tamanho XL</strong>
@@ -459,7 +467,9 @@
 
         <article class="review-card reveal" role="listitem">
           <div class="review-header">
-            <div class="review-avatar">J</div>
+            <div class="review-avatar">
+              <img src="images/marketing/depoimento_clientes/homem_masculo_pos_usar_o_banheiro.jpeg" alt="Cliente satisfeito" loading="lazy" width="42" height="42" />
+            </div>
             <div class="review-meta">
               <div class="review-nome">João P.</div>
               <div class="review-plataforma">Compra verificada &middot; WhatsApp</div>
@@ -473,15 +483,17 @@
             </div>
           </div>
           <p class="review-texto">
-            Comprei na zoeira, achando que era frescura. Irmão, eu tava limpando errado a vida inteira. Papel higiênico agora me dá nojo. Sem exagero.
+            Acabei de usar. Sensação de limpeza absurda. O papel higiênico virou peça de museu. Homem que se preza tem que usar isso.
           </p>
         </article>
 
         <article class="review-card reveal" role="listitem">
           <div class="review-header">
-            <div class="review-avatar">M</div>
+            <div class="review-avatar">
+              <img src="images/marketing/depoimento_clientes/esposa_com_lenços_comprados_para_o_marido.jpeg" alt="Cliente satisfeita" loading="lazy" width="42" height="42" />
+            </div>
             <div class="review-meta">
-              <div class="review-nome">Marcos T.</div>
+              <div class="review-nome">Amanda S.</div>
               <div class="review-plataforma">Compra verificada &middot; Instagram</div>
             </div>
             <div class="review-estrelas" aria-label="5 de 5 estrelas">
@@ -493,15 +505,17 @@
             </div>
           </div>
           <p class="review-texto">
-            Minha namorada que comprou pra mim, e eu achei que era piada. Agora eu que compro pra casa inteira. O papel virou artigo de decoração do banheiro.
+            Comprei pro meu marido e ele adorou. Vivia reclamando que papel arranhava. Agora virou fã e eu agradeço o banheiro cheiroso.
           </p>
         </article>
 
         <article class="review-card reveal" role="listitem">
           <div class="review-header">
-            <div class="review-avatar">R</div>
+            <div class="review-avatar">
+              <img src="images/marketing/depoimento_clientes/homem_de_50_anos_com_lenços_na_academia.jpeg" alt="Cliente satisfeito" loading="lazy" width="42" height="42" />
+            </div>
             <div class="review-meta">
-              <div class="review-nome">Rafael S.</div>
+              <div class="review-nome">Rogério M.</div>
               <div class="review-plataforma">Compra verificada &middot; TikTok</div>
             </div>
             <div class="review-estrelas" aria-label="5 de 5 estrelas">
@@ -513,7 +527,7 @@
             </div>
           </div>
           <p class="review-texto">
-            30 anos usando papel que rasga, fura e não limpa nada. Vi o anúncio, ri, comprei, testei. Agora fico puto de ter demorado tanto. Melhor investimento do ano, fácil.
+            Tenho 50 anos e levo pra academia todo dia. Suava muito, papel só espalha. O lenço limpa de verdade. Recomendo pra todo homem.
           </p>
         </article>
 
@@ -540,7 +554,7 @@
   ============================================================ -->
   <!-- Mobile sticky CTA (visible on small screens) -->
   <div class="mobile-cta" aria-hidden="false">
-    <a href="https://dono-do-trono.pay.yampi.com.br/r/CGHK71GNMZ" class="mobile-cta-btn" target="_blank" rel="noopener">Comprar Agora</a>
+    <a href="#oferta" class="mobile-cta-btn nav-scroll-link">Comprar Agora</a>
   </div>
   <footer id="footer">
     <div class="container">
@@ -637,5 +651,12 @@
 
 
   <script src="js/main.js" defer></script>
+  <!-- Floating quick-buy (opens Kit Test Drive on Yampi) -->
+  <a href="https://dono-do-trono.pay.yampi.com.br/r/CZC43AMUF6" class="floating-buy" target="_blank" rel="noopener" aria-label="Comprar Kit Test Drive">Comprar Agora</a>
+  <!-- Urgent countdown badge (mobile) -->
+  <div class="urgent-badge" aria-hidden="false">
+    <span class="urgent-text">Oferta termina em</span>
+    <span class="urgent-timer" data-seconds="900">00:15:00</span>
+  </div>
 </body>
 </html>

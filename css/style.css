@@ -51,7 +51,7 @@ html {
 body {
   font-family: var(--font-corpo);
   background: var(--preto);
-  color: var(--chumbo);
+  color: var(--branco); /* tornar textos brancos para melhor contraste */
   line-height: 1.6;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
@@ -204,7 +204,7 @@ a {
   background: none;
   border: none;
   cursor: pointer;
-  color: rgba(255,255,255,0.5);
+  color: var(--branco);
   border-radius: 50%;
   transition: color 0.2s, background 0.2s;
 }
@@ -231,7 +231,7 @@ a {
   font-family: var(--font-titulo);
   font-size: 0.9rem;
   font-weight: 500;
-  color: rgba(255,255,255,0.6);
+  color: var(--branco);
   text-transform: uppercase;
   letter-spacing: 2px;
   text-decoration: none;
@@ -263,6 +263,65 @@ a {
   height: 40px;
   width: auto;
   object-fit: contain;
+}
+
+/* ============================================================
+   TIMER URGENTE (HEADER)
+   ============================================================ */
+.urgent-timer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 15px;
+  background: rgba(201, 150, 12, 0.15); /* Dourado translúcido */
+  border: 1px solid var(--dourado);
+  border-radius: var(--radius-sm);
+  padding: 4px 12px;
+  animation: pulse-red 2s infinite;
+}
+
+.urgent-text {
+  font-family: var(--font-titulo);
+  font-size: 0.6rem;
+  color: var(--dourado-claro);
+  letter-spacing: 1px;
+  margin-bottom: 2px;
+}
+
+.timer-countdown {
+  font-family: var(--font-titulo);
+  color: var(--branco);
+  font-weight: 700;
+  font-size: 1.1rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.timer-box {
+  color: var(--dourado);
+}
+
+@keyframes pulse-red {
+  0% { box-shadow: 0 0 0 0 rgba(201, 150, 12, 0.4); } 
+  70% { box-shadow: 0 0 0 6px rgba(201, 150, 12, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(201, 150, 12, 0); }
+}
+
+@media (max-width: 480px) {
+  /* No mobile, ajustamos para não quebrar o layout */
+  .urgent-timer-container {
+    padding: 2px 8px;
+    margin: 0 5px;
+  }
+  .urgent-text {
+    display: none; /* Esconde texto 'OFERTA EXPIRA' no mobile pra não ocupar espaço */
+  }
+  .timer-countdown {
+    font-size: 0.9rem;
+  }
 }
 
 .btn-header {
@@ -467,7 +526,7 @@ a {
 }
 
 .hero-proposta {
-  color: rgba(255,255,255,0.6);
+  color: var(--branco);
   font-size: 1rem;
   line-height: 1.65;
   text-align: center;
@@ -484,7 +543,7 @@ a {
 }
 
 .hero-sub {
-  color: rgba(255,255,255,0.4);
+  color: var(--branco);
   font-size: 0.82rem;
   text-align: center;
   margin-bottom: var(--gap-md);
@@ -507,7 +566,7 @@ a {
   display: flex;
   align-items: center;
   gap: 6px;
-  color: rgba(255,255,255,0.3);
+  color: var(--branco);
 }
 
 .hero-trust-item svg {
@@ -569,7 +628,7 @@ a {
   background: linear-gradient(90deg, transparent, rgba(201,150,12,0.3), transparent);
 }
 
-#oferta .secao-label  { color: rgba(255,255,255,0.35); }
+#oferta .secao-label  { color: var(--branco); }
 #oferta .secao-titulo { color: var(--branco); }
 #oferta .secao-divisor { background: rgba(201,150,12,0.4); }
 
@@ -666,7 +725,7 @@ a {
 
 .plano-desc {
   font-size: 0.82rem;
-  color: rgba(255,255,255,0.5);
+  color: var(--branco);
   margin-bottom: var(--gap-sm);
   line-height: 1.5;
 }
@@ -680,7 +739,7 @@ a {
 
 .plano-preco-de {
   font-size: 0.8rem;
-  color: rgba(255,255,255,0.25);
+  color: var(--branco);
   text-decoration: line-through;
 }
 
@@ -696,7 +755,7 @@ a {
 
 .plano-preco-parcel {
   font-size: 0.72rem;
-  color: rgba(255,255,255,0.4);
+  color: var(--branco);
   margin-bottom: var(--gap-sm);
 }
 
@@ -719,7 +778,7 @@ a {
   display: block;
   width: 100%;
   background: rgba(255,255,255,0.06);
-  color: rgba(255,255,255,0.7);
+  color: var(--branco);
   font-family: var(--font-titulo);
   font-size: 0.85rem;
   font-weight: 700;
@@ -792,7 +851,7 @@ a {
 
 .garantia-texto span {
   font-size: 0.78rem;
-  color: rgba(255,255,255,0.38);
+  color: var(--branco);
   line-height: 1.5;
 }
 
@@ -877,7 +936,7 @@ a {
 
 .destaque-texto span {
   font-size: 0.83rem;
-  color: var(--cinza-medio);
+  color: var(--branco);
   line-height: 1.5;
 }
 
@@ -900,7 +959,7 @@ a {
   background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
 }
 
-#beneficios .secao-label  { color: rgba(255,255,255,0.35); }
+#beneficios .secao-label  { color: var(--branco); }
 #beneficios .secao-titulo { color: var(--branco); }
 #beneficios .secao-divisor { background: rgba(255,255,255,0.15); }
 
@@ -950,7 +1009,7 @@ a {
 
 .beneficio-texto span {
   font-size: 0.82rem;
-  color: rgba(255,255,255,0.42);
+  color: var(--branco);
   line-height: 1.5;
 }
 
@@ -985,16 +1044,18 @@ a {
 
 .review-header {
   display: flex;
+  flex-direction: column;
   align-items: center;
+  text-align: center;
   gap: var(--gap-sm);
   margin-bottom: var(--gap-sm);
 }
 
 .review-avatar {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  background: var(--preto);
+  width: 120px;
+  height: 120px;
+  border-radius: var(--radius-md);
+  background: var(--preto); /* fallback */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1003,9 +1064,22 @@ a {
   font-weight: 700;
   color: var(--dourado-claro);
   flex-shrink: 0;
+  overflow: hidden; /* Garante que a imagem não vaze */
 }
 
-.review-meta { flex: 1; }
+.review-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.review-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
 
 .review-nome {
   font-family: var(--font-titulo);
@@ -1018,7 +1092,7 @@ a {
 
 .review-plataforma {
   font-size: 0.72rem;
-  color: var(--cinza-claro);
+  color: var(--cinza-medio);
   margin-top: 1px;
 }
 
@@ -1029,8 +1103,10 @@ a {
   font-size: 0.88rem;
   color: var(--cinza-escuro);
   line-height: 1.65;
-  border-left: 2px solid var(--dourado);
-  padding-left: var(--gap-sm);
+  border-left: none;
+  padding-left: 0;
+  text-align: center;
+  margin-top: var(--gap-sm);
 }
 
 /* ============================================================
@@ -1120,7 +1196,7 @@ a {
   font-size: 0.62rem;
   letter-spacing: 3.5px;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.3);
+  color: var(--branco);
   margin-bottom: var(--gap-sm);
 }
 
@@ -1137,14 +1213,14 @@ a {
 
 .faq-pergunta span {
   font-size: 0.85rem;
-  color: rgba(255,255,255,0.6);
+  color: var(--branco);
   flex: 1;
   line-height: 1.4;
   transition: color 0.2s;
 }
 
 .faq-pergunta:hover span {
-  color: rgba(255,255,255,0.85);
+  color: var(--branco);
 }
 
 .faq-icone {
@@ -1160,7 +1236,7 @@ a {
 
 .faq-resposta {
   font-size: 0.8rem;
-  color: rgba(255,255,255,0.38);
+  color: var(--branco);
   line-height: 1.7;
   max-height: 0;
   overflow: hidden;
@@ -1187,7 +1263,7 @@ a {
   height: 44px;
   border-radius: 50%;
   border: 1px solid rgba(255,255,255,0.1);
-  color: rgba(255,255,255,0.4);
+  color: var(--branco);
   transition: color 0.25s, border-color 0.25s, background 0.25s, transform 0.15s;
 }
 
@@ -1211,7 +1287,7 @@ a {
   display: block;
   font-size: 0.72rem;
   font-weight: 700;
-  color: rgba(255,255,255,0.5);
+  color: var(--branco);
   text-transform: uppercase;
   letter-spacing: 1px;
   margin-bottom: 6px;
@@ -1246,14 +1322,14 @@ a {
 
 .form-contato input::placeholder,
 .form-contato textarea::placeholder {
-  color: rgba(255,255,255,0.2);
+  color: var(--branco);
 }
 
 .btn-contato {
   display: block;
   width: 100%;
   background: rgba(255,255,255,0.06);
-  color: rgba(255,255,255,0.7);
+  color: var(--branco);
   font-family: var(--font-titulo);
   font-size: 0.85rem;
   font-weight: 700;
@@ -1288,7 +1364,7 @@ a {
 
 .footer-copy {
   font-size: 0.68rem;
-  color: rgba(255,255,255,0.2);
+  color: var(--branco);
   text-align: center;
   line-height: 1.8;
 }
@@ -1345,7 +1421,7 @@ a {
   font-family: var(--font-corpo);
   font-size: 0.95rem;
   font-weight: 500;
-  color: rgba(255,255,255,0.55);
+  color: var(--branco);
   font-style: italic;
   line-height: 1.5;
   letter-spacing: 0.3px;
@@ -1410,7 +1486,7 @@ a {
   font-family: var(--font-titulo);
   font-size: 0.7rem;
   font-weight: 700;
-  color: rgba(255,255,255,0.4);
+  color: var(--branco);
   text-transform: uppercase;
   letter-spacing: 1px;
   text-align: center;
@@ -1447,7 +1523,7 @@ a {
   font-family: var(--font-titulo);
   font-size: 0.78rem;
   font-weight: 700;
-  color: rgba(255,255,255,0.85);
+  color: var(--branco);
   text-align: left;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -1553,6 +1629,59 @@ a {
   text-decoration: none;
 }
 
+/* Floating buy button (small, mobile) */
+.floating-buy {
+  display: none; /* shown on small screens via media query */
+  position: fixed;
+  right: 16px;
+  bottom: calc(env(safe-area-inset-bottom, 12px) + 86px); /* above sticky mobile CTA */
+  z-index: 1700;
+  background: var(--dourado);
+  color: var(--preto);
+  padding: 10px 14px;
+  border-radius: 999px;
+  font-family: var(--font-titulo);
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  box-shadow: 0 8px 30px rgba(201,150,12,0.28);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.floating-buy:active { transform: translateY(1px); }
+
+@media (max-width: 767px) {
+  .floating-buy { display: inline-flex; }
+}
+
+/* Urgent countdown badge */
+.urgent-badge {
+  display: none; /* shown on small screens */
+  position: fixed;
+  right: 16px;
+  bottom: calc(env(safe-area-inset-bottom, 12px) + 138px);
+  z-index: 1750;
+  background: rgba(0,0,0,0.6);
+  color: var(--branco);
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-family: var(--font-titulo);
+  font-weight: 700;
+  font-size: 0.85rem;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.45);
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+}
+.urgent-badge .urgent-text { font-weight: 600; opacity: 0.95; }
+.urgent-badge .urgent-timer { color: var(--dourado); }
+
+@media (max-width: 767px) {
+  .urgent-badge { display: inline-flex; }
+}
+
 
 /* ============================================================
    PÁGINA: NOSSA HISTÓRIA
@@ -1636,12 +1765,12 @@ a {
 
 .historia-texto {
   font-size: 0.95rem;
-  color: rgba(255,255,255,0.55);
+  color: var(--branco);
   line-height: 1.8;
 }
 
 .historia-texto strong {
-  color: rgba(255,255,255,0.85);
+  color: var(--branco);
 }
 
 /* Valores */
@@ -1690,7 +1819,7 @@ a {
 
 .valor-desc {
   font-size: 0.82rem;
-  color: rgba(255,255,255,0.45);
+  color: var(--branco);
   line-height: 1.6;
 }
 

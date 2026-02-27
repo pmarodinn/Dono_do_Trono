@@ -225,6 +225,45 @@
   }
 
   /* ----------------------------------------------------------
+     URGENT COUNTDOWN BADGE
+  ---------------------------------------------------------- */
+  function initUrgentTimer() {
+    const timerContainer = document.getElementById('urgent-timer');
+    const timerMin = document.getElementById('timer-min');
+    const timerSec = document.getElementById('timer-sec');
+
+    if (!timerContainer || !timerMin || !timerSec) return;
+
+    // Mostra o timer
+    timerContainer.style.display = 'flex';
+
+    let totalTime = 15 * 60; // 15 minutos em segundos
+
+    // Se quiser salvar estado no localStorage pra parecer real:
+    // let storedTime = localStorage.getItem('urgentTimer');
+    // if (storedTime) totalTime = parseInt(storedTime);
+
+    const updateTimer = () => {
+      const minutes = Math.floor(totalTime / 60);
+      const seconds = totalTime % 60;
+
+      timerMin.textContent = minutes < 10 ? '0' + minutes : minutes;
+      timerSec.textContent = seconds < 10 ? '0' + seconds : seconds;
+
+      if (totalTime <= 0) {
+        // Quando acabar, pode reiniciar ou esconder
+        totalTime = 15 * 60; 
+      } else {
+        totalTime--;
+        // localStorage.setItem('urgentTimer', totalTime);
+      }
+    };
+
+    setInterval(updateTimer, 1000);
+    updateTimer(); // Executa primeira vez sem delay
+  }
+
+  /* ----------------------------------------------------------
      INIT
   ---------------------------------------------------------- */
   function init() {
@@ -235,6 +274,7 @@
     initSmoothScroll();
     initFormContato();
     initMetaPixelEvents();
+    initUrgentTimer();
   }
 
   if (document.readyState === 'loading') {
