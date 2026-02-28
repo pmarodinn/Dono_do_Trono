@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0a0a0a" />
+
+  <title>Dono do Trono — Bem-vindo ao Trono, Majestade 👑</title>
+  <meta name="description" content="Página exclusiva para clientes Dono do Trono. Recompensas, clube grátis e oportunidades inesquecíveis." />
+
+  <!-- Bloqueia indexação — página secreta -->
+  <meta name="robots" content="noindex, nofollow" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" /></noscript>
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="images/logo/logo_white_sm.png" type="image/png" />
+
+  <style>
+    /* ============================================================
+       OBRIGADO PAGE — Estilos exclusivos
+       ============================================================ */
+
+    .obrigado-hero {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: var(--gap-xl) var(--gap-sm);
+      background: var(--preto);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .obrigado-hero::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(201,150,12,0.10) 0%, transparent 65%);
+      pointer-events: none;
+      animation: glowPulse 8s ease-in-out infinite;
+    }
+
+    .obrigado-hero > * {
+      position: relative;
+      z-index: 2;
+    }
+
+    .obrigado-crown {
+      font-size: 4rem;
+      margin-bottom: var(--gap-sm);
+      animation: crownBounce 2s ease-in-out infinite;
+    }
+
+    @keyframes crownBounce {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      25% { transform: translateY(-8px) rotate(-3deg); }
+      75% { transform: translateY(-4px) rotate(3deg); }
+    }
+
+    .obrigado-titulo {
+      font-family: var(--font-titulo);
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--branco);
+      text-transform: uppercase;
+      line-height: 1.05;
+      margin-bottom: var(--gap-sm);
+    }
+
+    .obrigado-titulo span {
+      color: var(--dourado-claro);
+      display: block;
+    }
+
+    .obrigado-subtitulo {
+      font-family: var(--font-corpo);
+      font-size: 1rem;
+      color: rgba(255,255,255,0.7);
+      max-width: 380px;
+      line-height: 1.7;
+      margin-bottom: var(--gap-md);
+    }
+
+    .obrigado-scroll-hint {
+      font-family: var(--font-titulo);
+      font-size: 0.7rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--dourado);
+      animation: fadeInUp 1.5s ease-out 1s both;
+    }
+
+    .obrigado-scroll-hint::after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--dourado), transparent);
+      margin: var(--gap-sm) auto 0;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ---- Seções da página ---- */
+    .obrigado-secao {
+      padding: var(--gap-xl) var(--gap-sm);
+      position: relative;
+    }
+
+    .obrigado-secao::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,150,12,0.3), transparent);
+    }
+
+    /* ---- Hook 1: Clube grátis ---- */
+    .hook-clube {
+      background: var(--chumbo);
+    }
+
+    .hook-card {
+      background: rgba(255,255,255,0.03);
+      border: 1.5px solid var(--dourado);
+      border-radius: var(--radius-lg);
+      padding: var(--gap-lg) var(--gap-md);
+      text-align: center;
+      max-width: 460px;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hook-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(from 0deg, transparent, rgba(201,150,12,0.05), transparent, rgba(201,150,12,0.05), transparent);
+      animation: rotateGlow 12s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes rotateGlow {
+      to { transform: rotate(360deg); }
+    }
+
+    .hook-card > * {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hook-badge {
+      display: inline-block;
+      background: var(--dourado);
+      color: var(--preto);
+      font-family: var(--font-titulo);
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 6px 20px;
+      border-radius: 3px;
+      margin-bottom: var(--gap-md);
+    }
+
+    .hook-titulo {
+      font-family: var(--font-titulo);
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--branco);
+      text-transform: uppercase;
+      line-height: 1.1;
+      margin-bottom: var(--gap-sm);
+    }
+
+    .hook-titulo span {
+      color: var(--dourado-claro);
+    }
+
+    .hook-descricao {
+      font-size: 0.92rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.7;
+      margin-bottom: var(--gap-md);
+    }
+
+    .hook-descricao strong {
+      color: var(--dourado-claro);
+      font-weight: 600;
+    }
+
+    .hook-steps {
+      list-style: none;
+      text-align: left;
+      margin-bottom: var(--gap-md);
+    }
+
+    .hook-steps li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.5;
+    }
+
+    .hook-steps li:last-child {
+      border-bottom: none;
+    }
+
+    .step-num {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      background: var(--dourado);
+      color: var(--preto);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-titulo);
+      font-weight: 700;
+      font-size: 0.75rem;
+    }
+
+    .hook-aviso {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.4);
+      margin-top: var(--gap-sm);
+      font-style: italic;
+    }
+
+    /* ---- Hook 2: Concurso de vídeo ---- */
+    .hook-concurso {
+      background: var(--preto);
+    }
+
+    .concurso-card {
+      background: linear-gradient(145deg, rgba(201,150,12,0.08), rgba(255,255,255,0.02));
+      border: 1px solid rgba(201,150,12,0.3);
+      border-radius: var(--radius-lg);
+      padding: var(--gap-lg) var(--gap-md);
+      text-align: center;
+      max-width: 460px;
+      margin: 0 auto;
+    }
+
+    .concurso-emoji {
+      font-size: 3rem;
+      margin-bottom: var(--gap-sm);
+    }
+
+    .concurso-titulo {
+      font-family: var(--font-titulo);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--branco);
+      text-transform: uppercase;
+      line-height: 1.1;
+      margin-bottom: var(--gap-sm);
+    }
+
+    .concurso-titulo span {
+      color: var(--dourado-claro);
+      display: block;
+      font-size: 1.3rem;
+      margin-top: 4px;
+    }
+
+    .concurso-desc {
+      font-size: 0.92rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.7;
+      margin-bottom: var(--gap-md);
+    }
+
+    .concurso-desc strong {
+      color: var(--dourado-claro);
+    }
+
+    .concurso-misterio {
+      background: rgba(201,150,12,0.1);
+      border: 1px dashed var(--dourado);
+      border-radius: var(--radius-md);
+      padding: var(--gap-md);
+      margin-bottom: var(--gap-md);
+    }
+
+    .concurso-misterio-titulo {
+      font-family: var(--font-titulo);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--dourado-claro);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: var(--gap-xs);
+    }
+
+    .concurso-misterio p {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.6;
+    }
+
+    .concurso-misterio strong {
+      color: var(--branco);
+    }
+
+    .concurso-prazo {
+      display: inline-block;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius-sm);
+      padding: 8px 20px;
+      font-family: var(--font-titulo);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--dourado-claro);
+      margin-bottom: var(--gap-md);
+    }
+
+    /* ---- Hook 3: CTA final ---- */
+    .hook-final {
+      background: var(--chumbo);
+      text-align: center;
+      padding: var(--gap-xl) var(--gap-sm) var(--gap-lg);
+    }
+
+    .final-emoji {
+      font-size: 3rem;
+      margin-bottom: var(--gap-sm);
+    }
+
+    .final-titulo {
+      font-family: var(--font-titulo);
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--branco);
+      text-transform: uppercase;
+      line-height: 1.1;
+      margin-bottom: var(--gap-sm);
+    }
+
+    .final-titulo span {
+      color: var(--dourado-claro);
+    }
+
+    .final-desc {
+      font-size: 0.92rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.7;
+      max-width: 400px;
+      margin: 0 auto var(--gap-md);
+    }
+
+    .btn-whatsapp {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #25D366;
+      color: var(--branco);
+      font-family: var(--font-titulo);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 16px 32px;
+      border-radius: var(--radius-sm);
+      transition: transform 0.15s, box-shadow 0.2s, background 0.2s;
+      box-shadow: 0 4px 24px rgba(37, 211, 102, 0.3);
+    }
+
+    .btn-whatsapp:hover {
+      background: #1ebe5c;
+      box-shadow: 0 6px 32px rgba(37, 211, 102, 0.45);
+    }
+
+    .btn-whatsapp:active {
+      transform: scale(0.97);
+    }
+
+    .btn-instagram {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      color: var(--branco);
+      font-family: var(--font-titulo);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 16px 32px;
+      border-radius: var(--radius-sm);
+      transition: transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 4px 24px rgba(225, 48, 108, 0.3);
+      margin-top: var(--gap-sm);
+    }
+
+    .btn-instagram:hover {
+      box-shadow: 0 6px 32px rgba(225, 48, 108, 0.45);
+    }
+
+    .btn-instagram:active {
+      transform: scale(0.97);
+    }
+
+    .social-btns {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--gap-sm);
+      margin-bottom: var(--gap-md);
+    }
+
+    /* ---- Footer mínimo ---- */
+    .obrigado-footer {
+      background: var(--preto);
+      padding: var(--gap-md) var(--gap-sm);
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .obrigado-footer img {
+      height: 30px;
+      width: auto;
+      margin: 0 auto var(--gap-xs);
+      opacity: 0.4;
+    }
+
+    .obrigado-footer p {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.25);
+    }
+
+    @media (min-width: 480px) {
+      .obrigado-titulo { font-size: 2.8rem; }
+      .hook-titulo { font-size: 2rem; }
+      .concurso-titulo { font-size: 1.8rem; }
+      .final-titulo { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       HERO — Boas-vindas ao rei
+  ============================================================ -->
+  <section class="obrigado-hero">
+    <div class="obrigado-crown">👑</div>
+
+    <img src="images/logo/logo_white_sm.png" alt="Dono do Trono" style="width: 200px; max-width: 50%; margin-bottom: var(--gap-md); filter: drop-shadow(0 0 20px rgba(255, 210, 50, 0.6)) drop-shadow(0 0 80px rgba(255, 200, 30, 0.3));" />
+
+    <h1 class="obrigado-titulo">
+      Parabéns, Majestade.<br>
+      <span>Seu Trono Está Atualizado.</span>
+    </h1>
+
+    <p class="obrigado-subtitulo">
+      Você tomou a decisão certa. Seu traseiro já está comemorando. Mas espera — <strong style="color: var(--dourado-claro);">o melhor ainda nem começou.</strong>
+    </p>
+
+    <div class="obrigado-scroll-hint">
+      Role pra baixo e descubra
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       HOOK 1 — Clube do Trono GRÁTIS por 1 mês
+  ============================================================ -->
+  <section class="obrigado-secao hook-clube">
+    <div class="container">
+
+      <p class="secao-label" style="color: var(--dourado);">🔓 Exclusivo pra quem comprou</p>
+      <div class="secao-divisor" style="background: rgba(201,150,12,0.4);"></div>
+      <h2 class="secao-titulo" style="color: var(--branco);">Seu Traseiro Abriu<br>Uma Porta Secreta.</h2>
+
+      <div class="hook-card">
+        <span class="hook-badge">Recompensa Desbloqueada</span>
+
+        <h3 class="hook-titulo">
+          1 Mês Grátis no<br><span>Clube do Trono 👑</span>
+        </h3>
+
+        <p class="hook-descricao">
+          Você comprou, você usou, seu c* agradeceu. Agora <strong>mostre pro mundo que você evoluiu.</strong>
+          <br><br>
+          Poste sua experiência com o Dono do Trono nas redes sociais, <strong>marque a gente @dono.do.trono</strong>, e ganhe <strong>1 mês grátis</strong> do Clube do Trono — aquele pacotão mensal que chega na sua casa sem você mover um dedo.
+        </p>
+
+        <ol class="hook-steps">
+          <li>
+            <span class="step-num">1</span>
+            <span>Poste um Story, Reels ou TikTok mostrando o produto. Pode ser engraçado, pode ser sério, pode ser no trono mesmo — <strong style="color: var(--dourado-claro);">a gente não julga.</strong></span>
+          </li>
+          <li>
+            <span class="step-num">2</span>
+            <span>Marque <strong style="color: var(--dourado-claro);">@dono.do.trono</strong> no post. Se não marcar, a gente não vê. E se não vê, não conta. Simples assim.</span>
+          </li>
+          <li>
+            <span class="step-num">3</span>
+            <span>Mande um print ou o link do post pro nosso <strong style="color: var(--dourado-claro);">WhatsApp</strong>. Em até 48h, seu mês grátis tá ativado. Sem pegadinha.</span>
+          </li>
+        </ol>
+
+        <a href="https://wa.me/5541996502587?text=Fala%20Dono%20do%20Trono!%20Postei%20sobre%20o%20produto%20e%20quero%20meu%20m%C3%AAs%20gr%C3%A1tis%20do%20Clube!%20%F0%9F%91%91" target="_blank" rel="noopener" class="btn-cta" style="max-width: 340px; margin: 0 auto;">
+          Quero Meu Mês Grátis 🎁
+        </a>
+
+        <p class="hook-aviso">
+          * Válido para 1 resgate por CPF. Poste de verdade, a gente confere. Sem repost de print alheio, né, Majestade.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       HOOK 2 — Concurso de vídeo: TOP 3 até julho
+  ============================================================ -->
+  <section class="obrigado-secao hook-concurso">
+    <div class="container">
+
+      <p class="secao-label" style="color: var(--dourado);">🏆 Pra quem gosta de ganhar</p>
+      <div class="secao-divisor" style="background: rgba(201,150,12,0.4);"></div>
+      <h2 class="secao-titulo" style="color: var(--branco);">Isso Aqui Não É<br>Só Lenço Umedecido.</h2>
+
+      <div class="concurso-card">
+        <div class="concurso-emoji">🎬</div>
+
+        <h3 class="concurso-titulo">
+          Os 3 Melhores Vídeos<br>
+          <span>Ganham Uma Surpresa Que Você Não Vai Acreditar.</span>
+        </h3>
+
+        <p class="concurso-desc">
+          Grave um vídeo mostrando sua experiência com o Dono do Trono. Pode ser review, pode ser comédia, pode ser a reação do seu amigo quando descobrir que você usa lenço umedecido.<br><br>
+          Poste com a tag <strong>#DonoDoTrono</strong>, marque <strong>@dono.do.trono</strong>, e automaticamente você tá concorrendo.
+        </p>
+
+        <div class="concurso-misterio">
+          <p class="concurso-misterio-titulo">🤫 O Prêmio?</p>
+          <p>
+            A gente <strong>não vai contar agora.</strong> Só vamos dizer o seguinte: <strong>não é cupom de desconto.</strong> Não é frete grátis. É algo que nenhuma marca do seu banheiro jamais ofereceu.<br><br>
+            Os 3 vencedores vão saber em primeira mão. O resto vai ficar com inveja.<br><br>
+            <strong style="color: var(--dourado-claro);">Confie no Trono. Já confiou pro seu traseiro — agora confia pra isso também.</strong>
+          </p>
+        </div>
+
+        <div class="concurso-prazo">
+          ⏰ Prazo: até 31 de julho de 2026
+        </div>
+
+        <p class="concurso-desc" style="margin-bottom: var(--gap-sm); font-size: 0.82rem;">
+          Os vencedores serão anunciados nas nossas redes em agosto. Fique ligado — ou melhor, <strong>fique limpinho.</strong>
+        </p>
+
+        <a href="https://instagram.com/dono.do.trono" target="_blank" rel="noopener" class="btn-cta" style="max-width: 340px; margin: 0 auto; background: linear-gradient(45deg, #f09433, #e6683c, #dc2743); border: none;">
+          Seguir @dono.do.trono 📸
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       HOOK 3 — CTA final: Manda a real
+  ============================================================ -->
+  <section class="obrigado-secao hook-final">
+    <div class="container">
+
+      <div class="final-emoji">🚽👑</div>
+
+      <h2 class="final-titulo">
+        Resumindo, <span>Majestade:</span>
+      </h2>
+
+      <p class="final-desc">
+        Você limpou direito. Agora posta, marca, manda o print e garante seu Clube grátis. Ah, e se fizer um vídeo foda, pode ganhar algo que vai te deixar de queixo caído.<br><br>
+        <strong style="color: var(--dourado-claro);">Seu traseiro te trouxe até aqui. Não decepcione ele.</strong>
+      </p>
+
+      <div class="social-btns">
+        <a href="https://wa.me/5541996502587?text=Fala%20Dono%20do%20Trono!%20Postei%20sobre%20o%20produto%20e%20quero%20meu%20m%C3%AAs%20gr%C3%A1tis%20do%20Clube!%20%F0%9F%91%91" target="_blank" rel="noopener" class="btn-whatsapp">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+          Mandar Print no Zap
+        </a>
+
+        <a href="https://instagram.com/dono.do.trono" target="_blank" rel="noopener" class="btn-instagram">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          Seguir no Instagram
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FOOTER mínimo
+  ============================================================ -->
+  <footer class="obrigado-footer">
+    <img src="images/logo/logo_white_sm.png" alt="Dono do Trono" loading="lazy" />
+    <p>&copy; 2026 Dono do Trono &nbsp;&middot;&nbsp; Página exclusiva para clientes.</p>
+  </footer>
+
+</body>
+</html>
