@@ -202,24 +202,72 @@
       obs.observe(oferta);
     }
 
-    // InitiateCheckout — clique em qualquer botão de compra (Yampi)
+    // InitiateCheckout — clique em links de compra (Yampi) e link de assinatura (Asaas)
     document.addEventListener('click', (e) => {
-      const link = e.target.closest('a[href*="yampi.com.br"]');
-      if (!link) return;
+      // Yampi links (não tocamos no fluxo deles)
+      const yampiLink = e.target.closest('a[href*="yampi.com.br"]');
+      if (yampiLink) {
+        let plano = 'Dono do Trono';
+        let valor = 0;
 
-      let plano = 'Dono do Trono';
-      let valor = 0;
+        if (yampiLink.href.includes('CZC43AMUF6')) { plano = 'Kit Test Drive'; valor = 39.90; }
+        else if (yampiLink.href.includes('CGHK71GNMZ')) { plano = 'O Arsenal'; valor = 89.90; }
 
-      if (link.href.includes('CZC43AMUF6')) { plano = 'Kit Test Drive'; valor = 39.90; }
-      else if (link.href.includes('CGHK71GNMZ')) { plano = 'O Arsenal'; valor = 89.90; }
-      else if (link.href.includes('MAXBYJGACO')) { plano = 'Clube do Trono'; valor = 71.90; }
+        if (typeof fbq === 'function') {
+          fbq('track', 'InitiateCheckout', {
+            content_name: plano,
+            value: valor,
+            currency: 'BRL'
+          });
+        }
+      }
 
-      if (typeof fbq === 'function') {
-        fbq('track', 'InitiateCheckout', {
-          content_name: plano,
-          value: valor,
-          currency: 'BRL'
-        });
+      // Asaas subscription link: append tracking params and fire Meta event
+      const asaasLink = e.target.closest('#assinatura-link, a[href*="asaas.com/c/ln0g6u6khb7jzi0b"]');
+      if (asaasLink) {
+        // Prevent default so we can add tracking params
+        e.preventDefault();
+
+        const planName = asaasLink.dataset.plan || 'Clube do Trono';
+        const valor = parseFloat(asaasLink.dataset.valor) || 71.90;
+
+        // Build tracking params: UTM + fbclid (if present) + _fbp cookie (if present)
+        const params = new URLSearchParams();
+        params.set('utm_source', 'meta');
+        params.set('utm_medium', 'paid');
+        params.set('utm_campaign', 'assinatura');
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const fbclid = urlParams.get('fbclid');
+        if (fbclid) params.set('fbclid', fbclid);
+
+        const fbCookieMatch = document.cookie.match(/(?:^|; )_fbp=([^;]+)/);
+        if (fbCookieMatch && fbCookieMatch[1]) params.set('_fbp', decodeURIComponent(fbCookieMatch[1]));
+
+        // Also include basic product info so the payment landing receives context
+        params.set('content_name', planName);
+        params.set('value', valor.toString());
+        params.set('currency', 'BRL');
+
+        const base = asaasLink.getAttribute('href');
+        const sep = base.includes('?') ? '&' : '?';
+        const newUrl = base + sep + params.toString();
+
+        if (typeof fbq === 'function') {
+          fbq('track', 'InitiateCheckout', {
+            content_name: planName,
+            value: valor,
+            currency: 'BRL'
+          });
+        }
+
+        // Open in a new tab (maintain original target behavior)
+        try {
+          window.open(newUrl, asaasLink.target || '_blank');
+        } catch (err) {
+          // Fallback: navigate
+          window.location.href = newUrl;
+        }
       }
     });
   }
