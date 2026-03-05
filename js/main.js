@@ -350,7 +350,7 @@
       });
     });
 
-    // ---- Checkout ----
+    // ---- Checkout — Yampi multi-product URL ----
     checkoutBtn.addEventListener('click', () => {
       if (cart.length === 0) return;
 
@@ -364,14 +364,19 @@
         });
       }
 
-      // Build Yampi checkout: for now, redirect to the first item's Yampi link
-      // If user has multiple different products, we combine quantities in the URL
-      // Yampi checkout links work per-product, so we open the most popular/most expensive
-      const mainItem = cart.reduce((a, b) => (a.preco * a.qty >= b.preco * b.qty ? a : b));
-      if (mainItem && mainItem.yampi) {
-        window.open(mainItem.yampi, '_blank');
-      }
+      // Domínio do checkout Yampi
+      const dominioCheckout = 'https://dono-do-trono.pay.yampi.com.br';
 
+      // Extrair token de cada link Yampi (última parte após /r/)
+      // e montar formato TOKEN:QTD,TOKEN:QTD
+      const itensFormatados = cart.map(item => {
+        const token = item.yampi.split('/r/').pop();
+        return token + ':' + item.qty;
+      });
+
+      const urlFinal = dominioCheckout + '/r/' + itensFormatados.join(',');
+
+      window.open(urlFinal, '_blank');
       closeDrawer();
     });
 
