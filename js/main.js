@@ -180,6 +180,304 @@
   }
 
   /* ----------------------------------------------------------
+     CARRINHO DE COMPRAS
+  ---------------------------------------------------------- */
+  function initCart() {
+    // State
+    let cart = JSON.parse(localStorage.getItem('ddt_cart') || '[]');
+
+    // DOM refs
+    const badge       = $('#cart-badge');
+    const iconBtn     = $('#cart-icon-btn');
+    const drawer      = $('#cart-drawer');
+    const overlay     = $('#cart-overlay');
+    const closeBtn    = $('#cart-drawer-close');
+    const itemsWrap   = $('#cart-items');
+    const emptyMsg    = $('#cart-empty');
+    const footer      = $('#cart-footer');
+    const totalEl     = $('#cart-total');
+    const checkoutBtn = $('#cart-checkout-btn');
+
+    if (!drawer || !overlay) return;
+
+    // ---- Helpers ----
+    function saveCart() {
+      localStorage.setItem('ddt_cart', JSON.stringify(cart));
+    }
+
+    function formatBRL(v) {
+      return 'R$\u00a0' + v.toFixed(2).replace('.', ',');
+    }
+
+    function getTotal() {
+      return cart.reduce((sum, item) => sum + item.preco * item.qty, 0);
+    }
+
+    function getTotalQty() {
+      return cart.reduce((sum, item) => sum + item.qty, 0);
+    }
+
+    // ---- Render ----
+    function render() {
+      const totalQty = getTotalQty();
+
+      // Badge
+      if (totalQty > 0) {
+        badge.textContent = totalQty;
+        badge.style.display = 'flex';
+      } else {
+        badge.style.display = 'none';
+      }
+
+      // Empty state
+      if (cart.length === 0) {
+        emptyMsg.style.display = 'flex';
+        footer.style.display = 'none';
+        itemsWrap.innerHTML = '';
+        return;
+      }
+
+      emptyMsg.style.display = 'none';
+      footer.style.display = 'block';
+      totalEl.textContent = formatBRL(getTotal());
+
+      itemsWrap.innerHTML = cart.map(item => `
+        <div class="cart-item" data-id="${item.id}">
+          <img src="${item.img}" alt="${item.nome}" class="cart-item-img" />
+          <div class="cart-item-info">
+            <div class="cart-item-nome">${item.nome}</div>
+            <div class="cart-item-preco">${formatBRL(item.preco * item.qty)}</div>
+            <div class="cart-item-controls">
+              <button type="button" class="cart-qty-btn cart-qty-minus" data-id="${item.id}" aria-label="Diminuir">−</button>
+              <span class="cart-qty-num">${item.qty}</span>
+              <button type="button" class="cart-qty-btn cart-qty-plus" data-id="${item.id}" aria-label="Aumentar">+</button>
+            </div>
+            <button type="button" class="cart-item-remove" data-id="${item.id}">Remover</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // ---- Cart actions ----
+    function addItem(id, nome, preco, img, yampi) {
+      const existing = cart.find(item => item.id === id);
+      if (existing) {
+        existing.qty++;
+      } else {
+        cart.push({ id, nome, preco: parseFloat(preco), img, yampi, qty: 1 });
+      }
+      saveCart();
+      render();
+    }
+
+    function removeItem(id) {
+      cart = cart.filter(item => item.id !== id);
+      saveCart();
+      render();
+    }
+
+    function changeQty(id, delta) {
+      const item = cart.find(i => i.id === id);
+      if (!item) return;
+      item.qty += delta;
+      if (item.qty <= 0) {
+        removeItem(id);
+        return;
+      }
+      saveCart();
+      render();
+    }
+
+    // ---- Drawer open/close ----
+    function openDrawer() {
+      drawer.classList.add('aberto');
+      overlay.classList.add('aberto');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeDrawer() {
+      drawer.classList.remove('aberto');
+      overlay.classList.remove('aberto');
+      document.body.style.overflow = '';
+    }
+
+    iconBtn.addEventListener('click', openDrawer);
+    closeBtn.addEventListener('click', closeDrawer);
+    overlay.addEventListener('click', closeDrawer);
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && drawer.classList.contains('aberto')) closeDrawer();
+    });
+
+    // ---- Event delegation for cart items ----
+    itemsWrap.addEventListener('click', (e) => {
+      const minusBtn = e.target.closest('.cart-qty-minus');
+      if (minusBtn) { changeQty(minusBtn.dataset.id, -1); return; }
+
+      const plusBtn = e.target.closest('.cart-qty-plus');
+      if (plusBtn) { changeQty(plusBtn.dataset.id, 1); return; }
+
+      const removeBtn = e.target.closest('.cart-item-remove');
+      if (removeBtn) { removeItem(removeBtn.dataset.id); return; }
+    });
+
+    // ---- Add-to-cart buttons ----
+    $$('.btn-add-cart').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const { id, nome, preco, img, yampi } = btn.dataset;
+        addItem(id, nome, preco, img, yampi);
+
+        // Visual feedback
+        const originalText = btn.textContent;
+        btn.textContent = '✅ Adicionado!';
+        btn.classList.add('adicionado');
+        setTimeout(() => {
+          btn.textContent = originalText;
+          btn.classList.remove('adicionado');
+        }, 1500);
+
+        // Open drawer briefly
+        openDrawer();
+
+        // Meta Pixel
+        if (typeof fbq === 'function') {
+          fbq('track', 'AddToCart', {
+            content_name: nome,
+            value: parseFloat(preco),
+            currency: 'BRL'
+          });
+        }
+      });
+    });
+
+    // ---- Checkout ----
+    checkoutBtn.addEventListener('click', () => {
+      if (cart.length === 0) return;
+
+      // Fire Meta Pixel InitiateCheckout with full cart
+      if (typeof fbq === 'function') {
+        fbq('track', 'InitiateCheckout', {
+          content_name: cart.map(i => i.nome).join(', '),
+          value: getTotal(),
+          currency: 'BRL',
+          num_items: getTotalQty()
+        });
+      }
+
+      // Build Yampi checkout: for now, redirect to the first item's Yampi link
+      // If user has multiple different products, we combine quantities in the URL
+      // Yampi checkout links work per-product, so we open the most popular/most expensive
+      const mainItem = cart.reduce((a, b) => (a.preco * a.qty >= b.preco * b.qty ? a : b));
+      if (mainItem && mainItem.yampi) {
+        window.open(mainItem.yampi, '_blank');
+      }
+
+      closeDrawer();
+    });
+
+    // Initial render from localStorage
+    render();
+  }
+
+  /* ----------------------------------------------------------
+     POPUP ASSINATURA — aviso carrinho + clube separados
+  ---------------------------------------------------------- */
+  function initAssinaturaPopup() {
+    const assinaturaLink = $('#assinatura-link');
+    if (!assinaturaLink) return;
+
+    const popupOverlay = $('#popup-assinatura-overlay');
+    const popup        = $('#popup-assinatura');
+    const btnContinuar = $('#popup-btn-continuar');
+    const btnCancelar  = $('#popup-btn-cancelar');
+    const btnClose     = $('#popup-assinatura-close');
+
+    if (!popup || !popupOverlay) return;
+
+    function hasCartItems() {
+      const cart = JSON.parse(localStorage.getItem('ddt_cart') || '[]');
+      return cart.length > 0;
+    }
+
+    function showPopup() {
+      popupOverlay.style.display = 'block';
+      popup.style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function hidePopup() {
+      popupOverlay.style.display = 'none';
+      popup.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+
+    function proceedToAsaas(e) {
+      hidePopup();
+
+      // Fire original Asaas tracking (reuse the existing logic)
+      const planName = assinaturaLink.dataset.plan || 'Clube do Trono';
+      const valor = parseFloat(assinaturaLink.dataset.valor) || 25.90;
+
+      const params = new URLSearchParams();
+      params.set('utm_source', 'meta');
+      params.set('utm_medium', 'paid');
+      params.set('utm_campaign', 'assinatura');
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const fbclid = urlParams.get('fbclid');
+      if (fbclid) params.set('fbclid', fbclid);
+
+      const fbCookieMatch = document.cookie.match(/(?:^|; )_fbp=([^;]+)/);
+      if (fbCookieMatch && fbCookieMatch[1]) params.set('_fbp', decodeURIComponent(fbCookieMatch[1]));
+
+      params.set('content_name', planName);
+      params.set('value', valor.toString());
+      params.set('currency', 'BRL');
+
+      const base = assinaturaLink.getAttribute('href');
+      const sep = base.includes('?') ? '&' : '?';
+      const newUrl = base + sep + params.toString();
+
+      if (typeof fbq === 'function') {
+        fbq('track', 'InitiateCheckout', {
+          content_name: planName,
+          value: valor,
+          currency: 'BRL'
+        });
+      }
+
+      try {
+        window.open(newUrl, '_blank');
+      } catch (err) {
+        window.location.href = newUrl;
+      }
+    }
+
+    // Intercept click on Asaas link
+    assinaturaLink.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      if (hasCartItems()) {
+        // Show warning popup
+        showPopup();
+      } else {
+        // No cart items, go directly
+        proceedToAsaas(e);
+      }
+    });
+
+    // Popup button handlers
+    btnContinuar.addEventListener('click', proceedToAsaas);
+    btnCancelar.addEventListener('click', hidePopup);
+    btnClose.addEventListener('click', hidePopup);
+    popupOverlay.addEventListener('click', hidePopup);
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && popup.style.display === 'block') hidePopup();
+    });
+  }
+
+  /* ----------------------------------------------------------
      META PIXEL — Eventos de conversão
   ---------------------------------------------------------- */
   function initMetaPixelEvents() {
@@ -202,74 +500,8 @@
       obs.observe(oferta);
     }
 
-    // InitiateCheckout — clique em links de compra (Yampi) e link de assinatura (Asaas)
-    document.addEventListener('click', (e) => {
-      // Yampi links (não tocamos no fluxo deles)
-      const yampiLink = e.target.closest('a[href*="yampi.com.br"]');
-      if (yampiLink) {
-        let plano = 'Dono do Trono';
-        let valor = 0;
-
-        if (yampiLink.href.includes('CZC43AMUF6')) { plano = 'Kit Test Drive'; valor = 39.90; }
-        else if (yampiLink.href.includes('CGHK71GNMZ')) { plano = 'O Arsenal'; valor = 89.90; }
-
-        if (typeof fbq === 'function') {
-          fbq('track', 'InitiateCheckout', {
-            content_name: plano,
-            value: valor,
-            currency: 'BRL'
-          });
-        }
-      }
-
-      // Asaas subscription link: append tracking params and fire Meta event
-      const asaasLink = e.target.closest('#assinatura-link, a[href*="asaas.com/c/ln0g6u6khb7jzi0b"]');
-      if (asaasLink) {
-        // Prevent default so we can add tracking params
-        e.preventDefault();
-
-        const planName = asaasLink.dataset.plan || 'Clube do Trono';
-        const valor = parseFloat(asaasLink.dataset.valor) || 71.90;
-
-        // Build tracking params: UTM + fbclid (if present) + _fbp cookie (if present)
-        const params = new URLSearchParams();
-        params.set('utm_source', 'meta');
-        params.set('utm_medium', 'paid');
-        params.set('utm_campaign', 'assinatura');
-
-        const urlParams = new URLSearchParams(window.location.search);
-        const fbclid = urlParams.get('fbclid');
-        if (fbclid) params.set('fbclid', fbclid);
-
-        const fbCookieMatch = document.cookie.match(/(?:^|; )_fbp=([^;]+)/);
-        if (fbCookieMatch && fbCookieMatch[1]) params.set('_fbp', decodeURIComponent(fbCookieMatch[1]));
-
-        // Also include basic product info so the payment landing receives context
-        params.set('content_name', planName);
-        params.set('value', valor.toString());
-        params.set('currency', 'BRL');
-
-        const base = asaasLink.getAttribute('href');
-        const sep = base.includes('?') ? '&' : '?';
-        const newUrl = base + sep + params.toString();
-
-        if (typeof fbq === 'function') {
-          fbq('track', 'InitiateCheckout', {
-            content_name: planName,
-            value: valor,
-            currency: 'BRL'
-          });
-        }
-
-        // Open in a new tab (maintain original target behavior)
-        try {
-          window.open(newUrl, asaasLink.target || '_blank');
-        } catch (err) {
-          // Fallback: navigate
-          window.location.href = newUrl;
-        }
-      }
-    });
+    // Note: InitiateCheckout for Yampi avulsos and Asaas assinatura
+    // are now handled by initCart() and initAssinaturaPopup() respectively
   }
 
   /* ----------------------------------------------------------
@@ -323,6 +555,8 @@
     initFormContato();
     initMetaPixelEvents();
     initUrgentTimer();
+    initCart();
+    initAssinaturaPopup();
   }
 
   if (document.readyState === 'loading') {

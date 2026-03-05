@@ -122,9 +122,15 @@
       </div>
     </div>
     
-    <a href="#oferta" class="btn-header nav-scroll-link">
-      Comprar Agora
-    </a>
+    <div class="header-actions">
+      <button class="cart-icon-btn" id="cart-icon-btn" aria-label="Abrir carrinho">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <span class="cart-badge" id="cart-badge" style="display:none;">0</span>
+      </button>
+      <a href="#oferta" class="btn-header nav-scroll-link">
+        Comprar Agora
+      </a>
+    </div>
   </header>
 
   <!-- Nav Drawer / Menu lateral -->
@@ -203,9 +209,9 @@
             <span class="plano-preco">R$&nbsp;45,90</span>
           </div>
           <p class="plano-preco-parcel">ou 2&times; R$&nbsp;20,95 sem juros</p>
-          <a href="https://dono-do-trono.pay.yampi.com.br/r/CZC43AMUF6" target="_blank" rel="noopener" class="btn-plano">
-            Quero Testar
-          </a>
+          <button type="button" class="btn-plano btn-add-cart" data-id="test-drive" data-nome="Kit Test Drive" data-preco="45.90" data-img="images/product/teste_drive.jpg" data-yampi="https://dono-do-trono.pay.yampi.com.br/r/CZC43AMUF6">
+            Adicionar ao Carrinho 🛒
+          </button>
         </div>
 
         <!-- Plano 2: destaque -->
@@ -222,9 +228,9 @@
           </div>
           <p class="plano-preco-parcel">ou 6&times; R$&nbsp;14,98 sem juros</p>
           <span class="plano-frete">Frete Grátis</span>
-          <a href="https://dono-do-trono.pay.yampi.com.br/r/CGHK71GNMZ" target="_blank" rel="noopener" class="btn-plano">
-            Assumir o Arsenal
-          </a>
+          <button type="button" class="btn-plano btn-add-cart" data-id="arsenal" data-nome="O Arsenal" data-preco="89.90" data-img="images/product/o_arsenal.jpg" data-yampi="https://dono-do-trono.pay.yampi.com.br/r/CGHK71GNMZ">
+            Adicionar ao Carrinho 🛒
+          </button>
         </div>
 
         <!-- Plano 3: Assinatura -->
@@ -648,5 +654,63 @@
 
 
   <script src="js/main.js" defer></script>
+
+  <!-- ============================================================
+       CART DRAWER — Slide-out lateral
+  ============================================================ -->
+  <div class="cart-overlay" id="cart-overlay"></div>
+  <aside class="cart-drawer" id="cart-drawer" aria-label="Carrinho de compras">
+    <div class="cart-drawer-header">
+      <h3 class="cart-drawer-titulo">Seu Arsenal 🛒</h3>
+      <button class="cart-drawer-close" id="cart-drawer-close" aria-label="Fechar carrinho">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+
+    <div class="cart-items" id="cart-items">
+      <!-- Items rendered by JS -->
+    </div>
+
+    <div class="cart-empty" id="cart-empty">
+      <p>Seu carrinho tá vazio, Majestade.<br>Bora equipar esse trono!</p>
+    </div>
+
+    <div class="cart-footer" id="cart-footer" style="display:none;">
+      <div class="cart-total-row">
+        <span>Total:</span>
+        <span class="cart-total-valor" id="cart-total">R$ 0,00</span>
+      </div>
+      <button type="button" class="btn-cta cart-checkout-btn" id="cart-checkout-btn">
+        Finalizar Compra 💪
+      </button>
+      <p class="cart-aviso-frete">Frete grátis a partir de R$&nbsp;89,90</p>
+    </div>
+  </aside>
+
+  <!-- ============================================================
+       POPUP — Aviso de assinatura separada
+  ============================================================ -->
+  <div class="popup-overlay" id="popup-assinatura-overlay" style="display:none;"></div>
+  <div class="popup-assinatura" id="popup-assinatura" style="display:none;" role="dialog" aria-modal="true">
+    <button class="popup-close" id="popup-assinatura-close" aria-label="Fechar aviso">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="popup-icon">⚠️</div>
+    <h3 class="popup-titulo">Ei, Majestade! Atenção:</h3>
+    <p class="popup-desc">
+      Você tem <strong>itens avulsos no carrinho</strong>. A assinatura do <strong>Clube do Trono</strong> é cobrada <strong>separadamente</strong> — é uma mensalidade à parte, pelo Asaas.
+    </p>
+    <p class="popup-desc" style="font-size: 0.8rem; opacity: 0.7;">
+      Ou seja: seus produtos avulsos serão pagos no Yampi, e a assinatura mensal no Asaas. São dois pagamentos diferentes, beleza?
+    </p>
+    <div class="popup-btns">
+      <button type="button" class="btn-cta popup-btn-continuar" id="popup-btn-continuar">
+        Entendi, Continuar pro Clube 👑
+      </button>
+      <button type="button" class="popup-btn-cancelar" id="popup-btn-cancelar">
+        Voltar
+      </button>
+    </div>
+  </div>
 </body>
 </html>
