@@ -824,6 +824,38 @@ a {
   border-color: var(--dourado);
 }
 
+/* Em Breve — card desabilitado */
+.plano-em-breve {
+  position: relative;
+  pointer-events: none;
+  user-select: none;
+}
+
+.plano-em-breve-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  border-radius: var(--radius-md);
+  z-index: 2;
+}
+
+.plano-em-breve .plano-badge.badge-em-breve {
+  z-index: 3;
+  background: #666;
+  color: var(--branco);
+  font-size: 0.65rem;
+  letter-spacing: 3px;
+  pointer-events: none;
+}
+
+.plano-em-breve .btn-plano-assinatura:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.4);
+}
+
 /* Garantia */
 .garantia-bloco {
   margin-top: var(--gap-lg);

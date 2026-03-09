@@ -561,7 +561,7 @@
     initMetaPixelEvents();
     initUrgentTimer();
     initCart();
-    initAssinaturaPopup();
+    // initAssinaturaPopup(); // Desativado — Clube do Trono em breve
   }
 
   if (document.readyState === 'loading') {

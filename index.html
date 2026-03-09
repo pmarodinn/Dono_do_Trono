@@ -205,11 +205,11 @@
           <div class="plano-nome">Kit Test Drive</div>
           <p class="plano-desc">3 Pacotes — Pra você provar e nunca mais olhar pro papel com os mesmos olhos.</p>
           <div class="plano-preco-bloco">
-            <span class="plano-preco-de">R$&nbsp;59,90</span>
-            <span class="plano-preco">R$&nbsp;45,90</span>
+            <span class="plano-preco-de">R$&nbsp;68,70</span>
+            <span class="plano-preco">R$&nbsp;59,70</span>
           </div>
-          <p class="plano-preco-parcel">ou 2&times; R$&nbsp;20,95 sem juros</p>
-          <button type="button" class="btn-plano btn-add-cart" data-id="test-drive" data-nome="Kit Test Drive" data-preco="45.90" data-img="images/product/teste_drive.jpg" data-yampi="https://dono-do-trono.pay.yampi.com.br/r/CZC43AMUF6">
+          <p class="plano-preco-parcel">ou 3&times; R$&nbsp;19,90 sem juros</p>
+          <button type="button" class="btn-plano btn-add-cart" data-id="test-drive" data-nome="Kit Test Drive" data-preco="59.70" data-img="images/product/teste_drive.jpg" data-yampi="https://dono-do-trono.pay.yampi.com.br/r/CZC43AMUF6">
             Adicionar ao Carrinho 🛒
           </button>
         </div>
@@ -226,15 +226,32 @@
             <span class="plano-preco-de">R$&nbsp;129,90</span>
             <span class="plano-preco">R$&nbsp;89,90</span>
           </div>
-          <p class="plano-preco-parcel">ou 6&times; R$&nbsp;14,98 sem juros</p>
+          <p class="plano-preco-parcel">ou 3&times; R$&nbsp;29,97 sem juros</p>
           <span class="plano-frete">Frete Grátis</span>
           <button type="button" class="btn-plano btn-add-cart" data-id="arsenal" data-nome="O Arsenal" data-preco="89.90" data-img="images/product/o_arsenal.jpg" data-yampi="https://dono-do-trono.pay.yampi.com.br/r/CGHK71GNMZ">
             Adicionar ao Carrinho 🛒
           </button>
         </div>
 
-        <!-- Plano 3: Assinatura -->
+        <!-- Plano 3: Avulso (1 pacote) -->
         <div class="plano-card reveal" role="listitem">
+          <div class="plano-img-wrap">
+            <img src="images/product/singles.png" alt="Pacote Avulso — 1 pacote de lenços umedecidos Dono do Trono" loading="lazy" decoding="async" class="plano-img" />
+          </div>
+          <div class="plano-nome">Pacote Avulso</div>
+          <p class="plano-desc">1 Pacote — Pra quem quer experimentar a revolução sem compromisso.</p>
+          <div class="plano-preco-bloco">
+            <span class="plano-preco">R$&nbsp;22,90</span>
+          </div>
+          <button type="button" class="btn-plano btn-add-cart" data-id="avulso" data-nome="Pacote Avulso" data-preco="22.90" data-img="images/product/singles.png" data-yampi="https://dono-do-trono.pay.yampi.com.br/r/AVULSO_TOKEN">
+            Adicionar ao Carrinho 🛒
+          </button>
+        </div>
+
+        <!-- Plano 4: Assinatura (Em Breve) -->
+        <div class="plano-card plano-em-breve reveal" role="listitem">
+          <span class="plano-badge badge-em-breve">Em Breve</span>
+          <div class="plano-em-breve-overlay"></div>
           <div class="plano-img-wrap">
             <img src="images/product/clube_do_trono.jpg" alt="Clube do Trono — assinatura mensal de lenços umedecidos" loading="lazy" decoding="async" class="plano-img" />
           </div>
@@ -248,9 +265,9 @@
             <span class="plano-preco">R$&nbsp;25,90<small>/mês</small></span>
           </div>
           <p class="plano-preco-parcel destaque-text">Frete Grátis &middot; Sem fidelidade</p>
-          <a href="https://www.asaas.com/c/ln0g6u6khb7jzi0b" id="assinatura-link" data-plan="Clube do Trono" data-valor="25.90" target="_blank" rel="noopener" class="btn-plano btn-plano-assinatura">
-            Entrar no Clube
-          </a>
+          <button type="button" class="btn-plano btn-plano-assinatura" disabled>
+            Em Breve 🔒
+          </button>
         </div>
 
       </div>
@@ -686,30 +703,7 @@
     </div>
   </aside>
 
-  <!-- ============================================================
-       POPUP — Aviso de assinatura separada
-  ============================================================ -->
-  <div class="popup-overlay" id="popup-assinatura-overlay" style="display:none;"></div>
-  <div class="popup-assinatura" id="popup-assinatura" style="display:none;" role="dialog" aria-modal="true">
-    <button class="popup-close" id="popup-assinatura-close" aria-label="Fechar aviso">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-    </button>
-    <div class="popup-icon">⚠️</div>
-    <h3 class="popup-titulo">Ei, Majestade! Atenção:</h3>
-    <p class="popup-desc">
-      Você tem <strong>itens avulsos no carrinho</strong>. A assinatura do <strong>Clube do Trono</strong> é cobrada <strong>separadamente</strong> — é uma mensalidade à parte, pelo Asaas.
-    </p>
-    <p class="popup-desc" style="font-size: 0.8rem; opacity: 0.7;">
-      Ou seja: seus produtos avulsos serão pagos no Yampi, e a assinatura mensal no Asaas. São dois pagamentos diferentes, beleza?
-    </p>
-    <div class="popup-btns">
-      <button type="button" class="btn-cta popup-btn-continuar" id="popup-btn-continuar">
-        Entendi, Continuar pro Clube 👑
-      </button>
-      <button type="button" class="popup-btn-cancelar" id="popup-btn-cancelar">
-        Voltar
-      </button>
-    </div>
-  </div>
+  <!-- POPUP Assinatura — desativado temporariamente (Clube do Trono em breve) -->
+
 </body>
 </html>
