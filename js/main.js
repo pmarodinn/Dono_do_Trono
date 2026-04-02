@@ -354,10 +354,10 @@
     checkoutBtn.addEventListener('click', () => {
       if (cart.length === 0) return;
 
-      // Fire Meta Pixel InitiateCheckout with full cart
-      if (typeof fbq === 'function') {
-        fbq('track', 'InitiateCheckout', {
-          content_name: cart.map(i => i.nome).join(', '),
+        // Fire Meta Pixel custom event para redirecionamento
+        if (typeof fbq === 'function') {
+          fbq('trackCustom', 'RedirecionamentoCheckout', {
+            content_name: cart.map(i => i.nome).join(', '),
           value: getTotal(),
           currency: 'BRL',
           num_items: getTotalQty()
@@ -439,13 +439,13 @@
       params.set('value', valor.toString());
       params.set('currency', 'BRL');
 
-      const base = assinaturaLink.getAttribute('href');
-      const sep = base.includes('?') ? '&' : '?';
-      const newUrl = base + sep + params.toString();
+        const base = assinaturaLink.getAttribute('href');
+        const sep = base.includes('?') ? '&' : '?';
+        const newUrl = base + sep + params.toString();
 
-      if (typeof fbq === 'function') {
-        fbq('track', 'InitiateCheckout', {
-          content_name: planName,
+        if (typeof fbq === 'function') {
+          fbq('trackCustom', 'RedirecionamentoCheckout', {
+            content_name: planName,
           value: valor,
           currency: 'BRL'
         });
