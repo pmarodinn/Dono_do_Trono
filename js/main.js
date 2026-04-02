@@ -354,9 +354,9 @@
     checkoutBtn.addEventListener('click', () => {
       if (cart.length === 0) return;
 
-        // Fire Meta Pixel custom event para redirecionamento
+        // Fire Meta Pixel InitiateCheckout with full cart
         if (typeof fbq === 'function') {
-          fbq('trackCustom', 'RedirecionamentoCheckout', {
+          fbq('track', 'InitiateCheckout', {
             content_name: cart.map(i => i.nome).join(', '),
           value: getTotal(),
           currency: 'BRL',
@@ -444,7 +444,7 @@
         const newUrl = base + sep + params.toString();
 
         if (typeof fbq === 'function') {
-          fbq('trackCustom', 'RedirecionamentoCheckout', {
+          fbq('track', 'InitiateCheckout', {
             content_name: planName,
           value: valor,
           currency: 'BRL'
